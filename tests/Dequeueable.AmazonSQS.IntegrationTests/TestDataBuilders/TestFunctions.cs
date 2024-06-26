@@ -2,7 +2,7 @@
 
 namespace Dequeueable.AmazonSQS.IntegrationTests.TestDataBuilders
 {
-    public class TestFunction(IFakeService fakeService) : IAmazonSQSFunction
+    public sealed class TestFunction(IFakeService fakeService) : IAmazonSQSFunction
     {
         public async Task ExecuteAsync(Message message, CancellationToken cancellationToken)
         {

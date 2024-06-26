@@ -2,37 +2,13 @@
 
 namespace Dequeueable.AzureQueueStorage.IntegrationTests.TestDataBuilders
 {
-    public class TestFunction : IAzureQueueFunction
+    public sealed class TestFunction(IFakeService fakeService) : IAzureQueueFunction
     {
-        private readonly IFakeService _fakeService;
-
-        public TestFunction(IFakeService fakeService)
-        {
-            _fakeService = fakeService;
-        }
-
         public Task ExecuteAsync(Message message, CancellationToken cancellationToken)
         {
-            return _fakeService.Execute(message);
+            return fakeService.Execute(message);
         }
     }
-
-    //[Singleton(scope: "Id", containerName: ContainerName, minimumIntervalInSeconds: 1)]
-    //public class SingletonFunction : IAzureQueueFunction
-    //{
-    //    public const string ContainerName = "scopedtestcontainer";
-    //    private readonly IFakeService _fakeService;
-
-    //    public SingletonFunction(IFakeService fakeService)
-    //    {
-    //        _fakeService = fakeService;
-    //    }
-
-    //    public Task ExecuteAsync(Message message, CancellationToken cancellationToken)
-    //    {
-    //        return _fakeService.Execute(message);
-    //    }
-    //}
 
     public interface IFakeService
     {

@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Dequeueable.AzureQueueStorage.SampleListener.Function
 {
-    internal class TestFunction(ILogger<TestFunction> logger) : IAzureQueueFunction
+    internal sealed class TestFunction(ILogger<TestFunction> logger) : IAzureQueueFunction
     {
         public async Task ExecuteAsync(Message message, CancellationToken cancellationToken)
         {
